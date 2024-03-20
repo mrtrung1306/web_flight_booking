@@ -1,0 +1,113 @@
+﻿<div class="card card-title bg-white p-1">
+    <div class="row">
+        <div class="col-md-6 "> <h5 class="pl-2 mt-2 text-blues">Tạo chuyến bay </h5> </div>
+        <div class="col-md-6 m-0">
+            @*<ol class="breadcrumb bg-white float-sm-right m-0">
+            <li class="breadcrumb-item m-0"><a href="~/Admin">Home</a></li>
+
+            </ol>*@
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+<script>
+    $(function () {
+        $('.datepicker').datepicker({
+            dateFormat: 'mm/dd/yy', // Định dạng ngày tháng năm
+            changeYear: true, // Cho phép lựa chọn năm
+            yearRange: '-100:+0', // Giới hạn lựa chọn từ năm hiện tại trở về 100 năm trước
+        });
+    });
+</script>
+<script>
+    $(function () {
+        $('.timepicker').timepicker({
+            timeFormat: 'HH:mm:ss',
+            interval: 5,
+            dropdown: true,
+            scrollbar: true
+        });
+    });
+</script>
+<div class="form-horizontal">
+    <hr />
+    <div class="form-group">
+        <label for="SoHieuMayBay" class="control-label col-md-2">Số Hiệu Máy Bay</label>
+        <div class="col-md-10">
+            <input type="text" id="SoHieuMayBay" name="SoHieuMayBay" class="form-control" />
+            <span class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="NgayKhoiHanh" class="control-label col-md-2">Ngày Khởi Hành</label>
+        <div class="col-md-10">
+            <input type="text" id="NgayKhoiHanh" name="NgayKhoiHanh" class="form-control datepicker" />
+            <span class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="GioKhoiHanh" class="control-label col-md-2">Giờ Khởi Hành</label>
+        <div class="col-md-10">
+            <input type="text" id="GioKhoiHanh" name="GioKhoiHanh" class="form-control timepicker" />
+            <span class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="GioDen" class="control-label col-md-2">Giờ Đến</label>
+        <div class="col-md-10">
+            <input type="text" id="GioDen" name="GioDen" class="form-control timepicker" />
+            <span class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="DiemKhoiHanh" class="control-label col-md-2">Điểm Khởi Hành</label>
+        <div class="col-md-10">
+            <select id="DiemKhoiHanh" name="DiemKhoiHanh" class="form-control">
+
+                <option value="Id">TenThanhPho</option>
+
+            </select>
+            <span class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="DiemDen" class="control-label col-md-2">Điểm Đến</label>
+        <div class="col-md-10">
+            <select id="DiemDen" name="DiemDen" class="form-control">
+                <option value="Id">TenThanhPho</option>
+            </select>
+            <span class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="GiaChuyenBay" class="control-label col-md-2">Giá Chuyến Bay</label>
+        <div class="col-md-10">
+            <input type="text" id="GiaChuyenBay" name="GiaChuyenBay" class="form-control" />
+            <span class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="HinhAnh" class="control-label col-md-2">Hình Ảnh</label>
+        <div class="col-md-10">
+            <input type="file" name="ImageFile" required class="form-control" accept=".png,.jpg,.jpeg" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <a>"Quay lại trang trước"</a>
+</div>

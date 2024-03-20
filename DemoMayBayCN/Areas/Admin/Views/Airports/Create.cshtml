@@ -1,0 +1,71 @@
+﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<div class="card card-title bg-white p-1">
+    <div class="row">
+        <div class="col-md-6 "> <h5 class="pl-2 mt-2 text-blues">Thêm địa điểm bay </h5> </div>
+        <div class="col-md-6 m-0">
+            @*<ol class="breadcrumb bg-white float-sm-right m-0">
+            <li class="breadcrumb-item m-0"><a href="~/Admin">Home</a></li>
+
+            </ol>*@
+        </div>
+    </div>
+</div>
+<div class="form-horizontal">
+    <hr />
+    <div class="form-group">
+        <label for="SoHieuMayBay" class="control-label col-md-2">Mã sân bay</label>
+        <div class="col-md-10">
+            <input type="text" id="AirportCode" name="AirportCode" class="form-control" />
+            <span class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="SoHieuMayBay" class="control-label col-md-2">Tên sân bay</label>
+        <div class="col-md-10">
+            <input type="text" id="AirportName" name="AirportName" class="form-control" />
+            <span class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="SoHieuMayBay" class="control-label col-md-2">Tên thành phố</label>
+        <div class="col-md-10">
+            <input type="text" id="City" name="City" class="form-control" />
+            <span class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+<div>
+    <a href="~/Admin/Airports">Quay lại trang trước</a>
+</div>
+<script>
+    $(document).ready(function(e){
+        function resetInputs() {
+            // Sử dụng jQuery để lặp qua tất cả các ô nhập và đặt giá trị về trống
+            $('input[type="text"]').each(function () {
+                $(this).val('');
+            });
+        }
+        $(".btn-primary").click(function(e){
+            var data ={
+                AirportCode: $('#AirportCode').val(),
+                AirportName: $('#AirportName').val(),
+                City: $('#City').val(),
+            }
+            $.ajax({
+                url: '/api/Airports/addAirports',
+                method: 'POST',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(data),
+                success: function(data){
+                    alert(data.message);
+                    resetInputs();
+                }
+            })
+        });
+    });
+</script>

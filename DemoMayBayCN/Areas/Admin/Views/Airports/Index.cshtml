@@ -1,0 +1,114 @@
+﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<div class="card card-title bg-white p-1">
+    <div class="row">
+        <div class="col-md-6 "> <h5 class="pl-2 mt-2 text-blues">Quản lý địa điểm bay </h5> </div>
+        <div class="col-md-6 m-0">
+        </div>
+    </div>
+</div>
+
+    <div class="search-container">
+        <label for="SearchString" style="margin-right: 10px">Tìm tên thành phố : </label>
+        <input type="text" id="searchInput" placeholder="Nhập tên thành phố ">
+        <input type="submit" value="Tìm kiếm" id="search-button">
+    </div>
+
+<button  class="btn btn-primary add"><i class="fas fa-plus"></i>Thêm thành phố</button>
+
+<div id="app"></div>
+<div id="pagination"></div>
+<script>
+    function getAirports(city,pageNumber) {
+        $.ajax({
+            url: '/api/Airports/GetAirport',
+            method: "GET",
+            data: {
+                keySearch: city,
+                PageNumber: pageNumber,
+            },
+            timeout: 5000,
+            success: function (data) {
+                renderTable(data.data);
+                displayPagination(data.pagination);
+            }
+        });
+    }
+    function renderTable(airports) {
+        const tableHeader = `
+                    <tr>
+                        <th>Id</th>
+                        <th>Mã sân bay</th>
+                        <th>Tên sân bay</th>
+                        <th>Tên thành phố</th>
+                        <th></th>
+                    </tr>
+                `;
+        const airportsHtml = airports.map(airport => `
+                    <tr>
+                        <td>${airport.airportID}</td>
+                        <td>${airport.airportCode}</td>
+                        <td>${airport.airportName}</td>
+                        <td>${airport.city}</td>
+                        <td>
+                            <button data-id="${airport.airportID}" class="edit-btn btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                            <button data-id="${airport.airportID}" class="detail-btn btn btn-secondary"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
+                            <button data-id="${airport.airportID}" class="delete-btn btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        </td>
+                    </tr>
+                `).join('');
+        const tableHtml = `<table class="table table-striped" id="tblBrands">${tableHeader}${airportsHtml}</table>`;
+        $('#app').html(tableHtml);
+    }
+    function displayPagination(paginationInfo) {
+        var totalPages = paginationInfo.totalPages;
+        var currentPage = paginationInfo.currentPage;
+        var city = $('#searchInput').val();
+        var paginationHtml = '<div class="pagination">';
+        if (currentPage > 1) {
+            paginationHtml += '<a href="#" onclick="getAirports(\'' + city + '\',' + (currentPage - 1) + ')">&laquo;</a>';
+        }
+        for (var i = 1; i <= totalPages; i++) {
+            if (i === currentPage) {
+                paginationHtml += '<a href="#" class="active" onclick="getAirports(\'' + city + '\',' + i + ')">' + i + '</a>';
+            }
+            else {
+                paginationHtml += '<a href="#" onclick="getAirports(\'' + city + '\',' + i + ')">' + i + '</a>';
+            }
+        }
+        if (currentPage < totalPages) {
+            paginationHtml += '<a href="#" onclick="getAirports(\'' + city + '\',' + (currentPage + 1) + ')">&raquo;</a>';
+        }
+        paginationHtml += '</div>';
+
+        
+        $('#pagination').html(paginationHtml);
+    }
+    $(document).ready(function () {
+        
+        $('#search-button').click(function (e) {
+            e.preventDefault();
+            var city = $('#searchInput').val();
+            var pageNumber = 1; 
+            if(city ==""){
+                alert("không tìm thấy thành phố cần tìm")
+            }
+            getAirports(city, pageNumber);
+        });
+
+        
+        $(document).on('click', '.pagination a', function (e) {
+            e.preventDefault();
+            var pageNumber = $(this).text();
+            var city = $('#searchInput').val();
+            getAirports(city, pageNumber);
+        });
+        getAirports('', 1);
+    });
+    $('.add').click(function (e) {
+        window.location.href="/Admin/Airports/Create";
+    });
+    $('#app').on('click', '.delete-btn', function () {
+        var airportId = $(this).data('id');
+        window.location.href = "/Admin/Airports/Delete/" + airportId;
+    });
+</script>
