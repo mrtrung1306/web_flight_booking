@@ -1,2 +1,2 @@
-🎉 Welcome to the Web flight booking!
-The website helps users find suitable flights, log in and perform the following operations: booking airline tickets, buying tickets. Help customers find flights quickly by suggesting many flight hours or different airlines depending on each customer's needs and financial ability. Through customers' personal information and booked flight information, the website has the ability to collect information and track preferences, thereby recommending suitable flights for customers as well as helping airlines. Build more suitable and effective flight schedule.
+🎉 Welcome to the Volunteer Platform!
+Volunteer Platform is a vibrant, collaborative space designed for individuals who are passionate about making a difference through volunteering. This platform makes it easy for users to connect with like-minded individuals and participate in meaningful volunteer work.
