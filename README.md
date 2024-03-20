@@ -1,6 +1,6 @@
 # 🎉 Welcome to the Flight Booking!
 
-Air Ticket Booking website is an online platform that allows users to book airline tickets easily and conveniently. With a user-friendly interface and flexible features, this website offers a quick and convenient booking experience.https://github.com/mrtrung1306/web_flight_booking/blob/master/README.md
+Air Ticket Booking website is an online platform that allows users to book airline tickets easily and conveniently. With a user-friendly interface and flexible features, this website offers a quick and convenient booking experience.
 
 ## 🚀 Getting Started
 
